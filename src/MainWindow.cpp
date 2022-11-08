@@ -50,6 +50,7 @@ void MainWindow::OnPaint() {
             pBrush->SetColor(D2D1::ColorF(D2D1::ColorF::Red));
             pRenderTarget->DrawEllipse(Selection()->ellipse, pBrush, 2.0f);
         }
+        the_curve.Draw(pRenderTarget, pBrush, ps.rcPaint);
         hr = pRenderTarget->EndDraw();
         if (FAILED(hr) || hr == D2DERR_RECREATE_TARGET) {
             DiscardGraphicsResources();

@@ -7,6 +7,7 @@
 
 #include <windowsx.h>
 #include <d2d1.h>
+#include <iostream>
 
 struct MyEllipse {
     D2D1_ELLIPSE ellipse;

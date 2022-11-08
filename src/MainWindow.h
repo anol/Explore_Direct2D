@@ -8,6 +8,7 @@
 
 #include "BaseWindow.h"
 #include "MyEllipse.h"
+#include "My_curve.h"
 
 #include <windowsx.h>
 #include <d2d1.h>
@@ -29,6 +30,7 @@ class MainWindow : public BaseWindow<MainWindow> {
     size_t nextColor;
     std::list<std::shared_ptr<MyEllipse>> ellipses;
     std::list<std::shared_ptr<MyEllipse>>::iterator selection;
+    My_curve the_curve{};
 
     std::shared_ptr<MyEllipse> Selection() {
         if (selection == ellipses.end()) {

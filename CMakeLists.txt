@@ -18,8 +18,7 @@ add_executable(${PROJECT_NAME}
         src/My_grid.h
         src/Explore_utility.cpp
         src/Explore_utility.h
-
-        src/Unit_test/Unit_test.cpp)
+        src/My_curve.h)
 
 target_link_libraries(${PROJECT_NAME}
         D2d1.lib)

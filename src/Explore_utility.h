@@ -10,7 +10,7 @@
 class Explore_utility {
 
 public:
-    static uint16_t logistic(uint16_t input, uint16_t midpoint, uint16_t steepness,
+    static uint16_t logistic(uint16_t input, uint16_t midpoint, double steepness,
                              uint16_t min_value, uint16_t max_value);
 
 };
