@@ -4,7 +4,6 @@
 #include "Resources.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-//int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR, int nCmdShow) {
     MainWindow win;
     auto window_name = "Draw Circles";
     if (!win.Create(window_name, WS_OVERLAPPEDWINDOW)) {

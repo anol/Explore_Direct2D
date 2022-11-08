@@ -5,7 +5,7 @@
 #ifndef EXPLORE_DIRECT2D_MYELLIPSE_H
 #define EXPLORE_DIRECT2D_MYELLIPSE_H
 
-#include <Windowsx.h>
+#include <windowsx.h>
 #include <d2d1.h>
 
 struct MyEllipse {

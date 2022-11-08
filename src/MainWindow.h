@@ -9,7 +9,7 @@
 #include "BaseWindow.h"
 #include "MyEllipse.h"
 
-#include <Windowsx.h>
+#include <windowsx.h>
 #include <d2d1.h>
 #include <list>
 #include <memory>

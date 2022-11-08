@@ -5,7 +5,7 @@
 #ifndef EXPLORE_DIRECT2D_DPISCALE_H
 #define EXPLORE_DIRECT2D_DPISCALE_H
 
-#include <Windowsx.h>
+#include <windowsx.h>
 #include <d2d1.h>
 
 class DPIScale {
