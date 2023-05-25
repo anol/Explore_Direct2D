@@ -12,7 +12,7 @@
 #include "Explore_utility.h"
 
 struct My_curve {
-    const float strokeWidth = 5.0;
+    const float strokeWidth = 0.5;
 
     void Draw(ID2D1RenderTarget *pRT, ID2D1SolidColorBrush *pBrush, RECT rect) const {
         pBrush->SetColor(D2D1::ColorF(D2D1::ColorF::Black));
@@ -29,6 +29,9 @@ struct My_curve {
             D2D1_POINT_2F point0 = D2D1::Point2F(oldX, oldY);
             D2D1_POINT_2F point1 = D2D1::Point2F(newX, newY);
             pRT->DrawLine(point0, point1, pBrush, strokeWidth);
+            D2D1_POINT_2F point2 = D2D1::Point2F(oldX, static_cast<FLOAT>(rect.bottom) - oldY);
+            D2D1_POINT_2F point3 = D2D1::Point2F(newX, static_cast<FLOAT>(rect.bottom) - newY);
+            pRT->DrawLine(point2, point3, pBrush, strokeWidth);
             oldX = newX;
             oldY = newY;
         }
