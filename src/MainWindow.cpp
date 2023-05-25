@@ -13,6 +13,41 @@ float DPIScale::scaleY = 1.0f;
 
 D2D1::ColorF::Enum colors[] = {D2D1::ColorF::Yellow, D2D1::ColorF::Salmon, D2D1::ColorF::LimeGreen};
 
+HRESULT MainWindow::CreateDeviceIndependentResources() {
+    static const WCHAR msc_fontName[] = L"Verdana";
+    static const FLOAT msc_fontSize = 50;
+    HRESULT hr;
+    if (m_pDWriteFactory == NULL) {
+        if (SUCCEEDED(hr)) {
+            // Create a DirectWrite factory.
+            hr = DWriteCreateFactory(
+                    DWRITE_FACTORY_TYPE_SHARED,
+                    __uuidof(m_pDWriteFactory),
+                    reinterpret_cast<IUnknown **>(&m_pDWriteFactory)
+            );
+        }
+        if (SUCCEEDED(hr)) {
+            // Create a DirectWrite text format object.
+            hr = m_pDWriteFactory->CreateTextFormat(
+                    msc_fontName,
+                    NULL,
+                    DWRITE_FONT_WEIGHT_NORMAL,
+                    DWRITE_FONT_STYLE_NORMAL,
+                    DWRITE_FONT_STRETCH_NORMAL,
+                    msc_fontSize,
+                    L"", //locale
+                    &optional_text_format
+            );
+        }
+        if (SUCCEEDED(hr)) {
+            // Center the text horizontally and vertically.
+            optional_text_format->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
+            optional_text_format->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
+        }
+    }
+    return hr;
+}
+
 HRESULT MainWindow::CreateGraphicsResources() {
     HRESULT hr = S_OK;
     if (pRenderTarget == NULL) {
@@ -27,6 +62,7 @@ HRESULT MainWindow::CreateGraphicsResources() {
             const D2D1_COLOR_F color = D2D1::ColorF(1.0f, 1.0f, 0);
             hr = pRenderTarget->CreateSolidColorBrush(color, &pBrush);
         }
+//        CreateDeviceIndependentResources();
     }
     return hr;
 }
@@ -51,6 +87,9 @@ void MainWindow::OnPaint() {
             pRenderTarget->DrawEllipse(Selection()->ellipse, pBrush, 2.0f);
         }
         the_curve.Draw(pRenderTarget, pBrush, ps.rcPaint);
+//        D2D1_SIZE_F renderTargetSize = pRenderTarget->GetSize();
+//        pRenderTarget->DrawTextA(L"test", 4, optional_text_format,
+//                                 D2D1::RectF(0, 0, renderTargetSize.width, renderTargetSize.height), pBrush);
         hr = pRenderTarget->EndDraw();
         if (FAILED(hr) || hr == D2DERR_RECREATE_TARGET) {
             DiscardGraphicsResources();

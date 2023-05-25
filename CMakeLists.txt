@@ -17,6 +17,8 @@ add_executable(${PROJECT_NAME}
         src/My_curve.h)
 
 target_link_libraries(${PROJECT_NAME}
-        D2d1.lib)
+        D2d1.lib
+        Dwrite.lib
+        )
 
 add_subdirectory(src/Unit_test)

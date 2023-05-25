@@ -14,6 +14,7 @@
 #include <d2d1.h>
 #include <list>
 #include <memory>
+#include <dwrite.h>
 
 class MainWindow : public BaseWindow<MainWindow> {
     enum Mode {
@@ -21,7 +22,7 @@ class MainWindow : public BaseWindow<MainWindow> {
         SelectMode,
         DragMode
     };
-    HCURSOR hCursor;
+    HCURSOR hCursor{};
     ID2D1Factory *pFactory;
     ID2D1HwndRenderTarget *pRenderTarget;
     ID2D1SolidColorBrush *pBrush;
@@ -31,6 +32,8 @@ class MainWindow : public BaseWindow<MainWindow> {
     std::list<std::shared_ptr<MyEllipse>> ellipses;
     std::list<std::shared_ptr<MyEllipse>>::iterator selection;
     My_curve the_curve{};
+    IDWriteTextFormat *optional_text_format{};
+    IDWriteFactory *m_pDWriteFactory{};
 
     std::shared_ptr<MyEllipse> Selection() {
         if (selection == ellipses.end()) {
@@ -83,6 +86,8 @@ public:
     PCWSTR ClassName() const { return L"Circle Window Class"; }
 
     LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
+
+    HRESULT CreateDeviceIndependentResources();
 };
 
 
