@@ -62,7 +62,7 @@ HRESULT MainWindow::CreateGraphicsResources() {
             const D2D1_COLOR_F color = D2D1::ColorF(1.0f, 1.0f, 0);
             hr = pRenderTarget->CreateSolidColorBrush(color, &pBrush);
         }
-//        CreateDeviceIndependentResources();
+       CreateDeviceIndependentResources();
     }
     return hr;
 }
@@ -87,9 +87,8 @@ void MainWindow::OnPaint() {
             pRenderTarget->DrawEllipse(Selection()->ellipse, pBrush, 2.0f);
         }
         the_curve.Draw(pRenderTarget, pBrush, ps.rcPaint);
-//        D2D1_SIZE_F renderTargetSize = pRenderTarget->GetSize();
-//        pRenderTarget->DrawTextA(L"test", 4, optional_text_format,
-//                                 D2D1::RectF(0, 0, renderTargetSize.width, renderTargetSize.height), pBrush);
+        pRenderTarget->DrawTextA(L"test", 4, optional_text_format,
+                                 D2D1::RectF(0, 0, 100, 100), pBrush);
         hr = pRenderTarget->EndDraw();
         if (FAILED(hr) || hr == D2DERR_RECREATE_TARGET) {
             DiscardGraphicsResources();
