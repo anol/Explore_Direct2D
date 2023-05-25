@@ -5,7 +5,7 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
     MainWindow win;
-    auto window_name = "Draw Circles";
+    auto window_name = "Explore Direct2D";
     if (!win.Create(window_name, WS_OVERLAPPEDWINDOW)) {
         return 0;
     }

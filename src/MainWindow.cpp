@@ -145,6 +145,13 @@ void MainWindow::OnKeyDown(UINT vkey) {
         case VK_DOWN:
             MoveSelection(0, 1);
             break;
+        case VK_SPACE:
+            if (mode == DrawMode) {
+                SetMode(SelectMode);
+            } else {
+                SetMode(DrawMode);
+            }
+            break;
     }
 }
 
